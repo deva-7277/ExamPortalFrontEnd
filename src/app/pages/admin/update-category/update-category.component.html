@@ -1,0 +1,47 @@
+<mat-card class="mt20 ml20">
+    <h1 style="padding: 20px 20px; text-align: center;">Update Quiz</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form *ngIf="category" (submit)="updateData()">
+            <!-- title field  -->
+            <mat-form-field class="w100" appearance="fill">
+              <mat-label>Enter Title</mat-label>
+              <input
+                [(ngModel)]="category.title"
+                type="text"
+                name="title"
+                placeholder="Enter here"
+                matInput
+                required
+              />
+            </mat-form-field>
+  
+            <!-- description field  -->
+  
+            <mat-form-field class="w100" appearance="fill">
+              <mat-label>Enter Description </mat-label>
+              <textarea
+                [(ngModel)]="category.description"
+                type="text"
+                name="description"
+                placeholder="Enter here"
+                matInput
+                rows="5"
+              ></textarea>
+            </mat-form-field>
+  
+  
+            <div class="container text-center">
+              <button style="margin-bottom: 20px;" mat-raised-button color="accent" type="submit">
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  
+  <!-- {{ quiz | json }} -->
+  

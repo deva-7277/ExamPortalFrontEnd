@@ -1,0 +1,48 @@
+
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row mt20">
+            <div class="col-md-6 offset-md-3">
+                <div class="container text-center">
+                    <img src="../../../assets/logo.png" height = "100px" width = "100px" alt ="Logo image" />
+                </div>
+                <h1 class = "text-center">
+                    Login
+                </h1>
+
+                <!-- | This is called as pipe operator, used for showing json onject on UI -->
+                <!-- {{loginData | json}} -->
+
+
+                <form (ngSubmit)="formSubmit()">
+                    <!-- Username Field-->
+                    <mat-form-field  class = "full-width" appearance="outline">
+                        <mat-label>User Name</mat-label>
+                        <input 
+                        [(ngModel)]="loginData.username"
+                            required
+                            name="username"
+                            matInput 
+                            placeholder="Enter username" 
+                        />
+                    </mat-form-field>
+
+                    <mat-form-field  class = "full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input 
+                        [(ngModel)]="loginData.password"
+                            required
+                            name="password"
+                            type = "password" 
+                            matInput 
+                            placeholder="Enter password" 
+                        />
+                    </mat-form-field>
+                    <div class="container text-center">
+                        <button type ="submit" mat-raised-button color="primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

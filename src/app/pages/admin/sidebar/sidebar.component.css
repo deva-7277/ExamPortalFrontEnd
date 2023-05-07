@@ -1,0 +1,18 @@
+.st{
+    display: inline-flex;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+.text{
+    background: -webkit-linear-gradient(45 deg, #09009f, #00ff95 80%);
+    -webkit-background-clip: text;
+    -webkit-animation-fill-color: transperent;
+}
+
+button:hover, mat-icon:hover{
+    color: #ff4081;
+    background-color: #ff4080ec;
+    text-transform: capitalize;
+    font-weight: 600;
+}

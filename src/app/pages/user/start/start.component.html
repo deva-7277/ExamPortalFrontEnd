@@ -1,0 +1,184 @@
+<div class="bootstrap-wrapper" *ngIf="!isSubmit">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!-- instructions -->
+        <mat-card>
+          <mat-card-content>
+              <h3>Instructions</h3>
+              <ul>
+                <li>Do not refresh the page otherwise order of questions will be shuffled.</li>
+                <li>Do not switch the tab.</li>
+                <li>Do not minimize the window.</li>
+              </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-8">
+        <!-- questions -->
+        <ng-container *ngIf="questions">
+          <h1 class="mt20">
+            On Going Quiz <b>{{ questions[0].quiz.title }}</b>
+          </h1>
+        </ng-container>
+
+        <mat-card *ngFor="let q of questions; let i = index" class="mt10">
+          <mat-card-content>
+            <p>
+              <b>Q {{ i + 1 }})</b>
+              <span class="ml10" [innerHTML]="q.content"></span>
+            </p>
+
+            <mat-divider> </mat-divider>
+            <br />
+
+            <div class="row mt20">
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option1"
+                  [name]=i.toString()
+                  [(ngModel)]="q.givenAnswer"
+                />{{ q.option1 }}
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option2"
+                  [name]=i.toString()
+                  [(ngModel)]="q.givenAnswer"
+                />{{ q.option2 }}
+              </div>
+            </div>
+
+            <div class="row mt20">
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option3"
+                  [name]=i.toString()
+                  [(ngModel)]="q.givenAnswer"
+                />{{ q.option3 }}
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option4"
+                  [name]=i.toString()
+                  [(ngModel)]="q.givenAnswer"
+                />{{ q.option4 }}
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <div class="container text-center mt20 mb20">
+          <button (click)="submitQuiz()" mat-raised-button color="primary">
+            Submit Quiz
+          </button>
+        </div>
+      </div>
+      <div class="col-md-2" *ngIf="questions">
+        <!-- progress -->
+
+        <mat-card style="margin-top: 70px">
+          <mat-card-header>
+            <mat-card-title> Progress </mat-card-title>
+            <mat-card-subtitle>
+              Quiz will automatically submitted when timer reaches to <b>0:0</b>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <h1 class="text-center">{{ getFormattedTime() }}</h1>
+            <mat-spinner
+              mode="determinate"
+              color="accent"
+              style="margin: auto"
+              [value]="(timer / (this.questions.length * 2 * 60)) * 100"
+            ></mat-spinner>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- show the result -->
+<div class="bootstrap-wrapper"  *ngIf="isSubmit">
+  <div class="row mt20">
+    <div class="col-md-6 offset-md-3">
+      <mat-card *ngIf="user">
+
+        <h1 class="t"><b>Quiz Result</b></h1>
+        
+
+          <table border="3px solid" style="margin-left: 20px;margin-right: 20px;margin-top: 20px; margin-bottom: 20px;">
+            <tr style="height: 50px;">
+              <td colspan="2"><b>Exam id :</b>  Exam{{user.id}} </td>
+              <td colspan="6" *ngIf="(marksGot/(questions[0].quiz.maxMarks))*100>40 ; else elseBlock" style="color: green;"><b style="color: black;">Status :</b>  <b>Pass</b></td>
+              <ng-template #elseBlock>
+                <b style="margin-top: 8px;">Status :</b> <b style="color: red; margin-top: 8px;">Fail</b>
+              </ng-template>
+            </tr>
+            <tr style="height: 50px;" *ngIf="quiz">
+              <td colspan="2"><b>Category :</b> {{questions[0].quiz.category.title }}</td>
+              <td colspan="6"><b>Quiz :</b>  {{  questions[0].quiz.title }}</td>
+            </tr>
+            
+            <tr style="height: 50px;">
+              <td colspan="6"><b>Student Name :</b> {{user.firstName}} {{user.lastName}}</td>
+            </tr>
+            <tr style="height: 50px;">
+              <td colspan="2"><b>Email id:</b> {{user.email}}</td>
+              <td colspan="6"><b>Phone:</b>  {{user.phone}}</td>
+            </tr>
+            <tr style="background-color: azure; height: 50px; text-align: center;">
+              <th>Total Questions</th>
+              <th>Total marks</th>
+              <th>Attempted</th>
+              <th>Correct</th>
+              <th>Incorrect</th>
+              <th>Marks Obtained</th>
+              
+            </tr>
+            <tr style="height: 50px; text-align: center;">
+              <td>{{this.questions.length}}</td>
+              <td>{{ questions[0].quiz.maxMarks }}</td>
+              <td>{{ attempted}}</td>
+              <td>{{ correctAnswers }}</td>
+              <td>{{ attempted - correctAnswers }}</td>
+              <td>{{ marksGot }}</td>
+            </tr>
+            <tr style="height: 50px;">
+              <td colspan="2"><b>Grade:</b> A+</td>
+              <td colspan="6"><b>Remark:</b> Excellent</td>
+            </tr>
+            
+          </table>
+
+          <!-- <tr>
+            <th>Marks Got</th>
+          <td></td>
+          <th>Correct Answers</th>
+          <td>{{ correctAnswers }}</td>
+
+          </tr>
+          
+          
+          <h1>Questions Attempted :{{ attempted }}</h1> -->
+       
+        <mat-card-actions class="text-center" >
+          <button (click)="printPage()"
+           mat-raised-button style="margin-left: 40%;" color="primary">Print</button>
+          <button
+            mat-raised-button
+            color="accent"
+            style="margin-left: 10px;"[routerLink]="'/user-dashboard/0'"
+          >
+            Home
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

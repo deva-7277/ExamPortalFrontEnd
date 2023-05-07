@@ -1,0 +1,10 @@
+.full-width{
+    width: 100%;
+}
+
+input[type="text"]{
+    color:aqua;
+    background-color: aqua;
+    padding: auto;
+    
+}
