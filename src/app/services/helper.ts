@@ -1,2 +1,2 @@
-let baseUrl = "https://immune-cows-production.up.railway.app"
+let baseUrl = "https://open-sleet-production.up.railway.app"
 export default baseUrl;
