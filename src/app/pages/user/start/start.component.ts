@@ -1,10 +1,13 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Result } from 'src/_model/result.model';
 import { LoginService } from 'src/app/services/login.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { ResultService } from 'src/app/services/result.service';
 import Swal from 'sweetalert2';
+// import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-start',
@@ -12,10 +15,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./start.component.css'],
 })
 export class StartComponent implements OnInit {
+
   qid:any;
   questions:any;
   quizName:any;
-  catId:any;
+  catId:number;
+  result:any;
   
   marksGot = 0;
   correctAnswers = 0;
@@ -27,13 +32,36 @@ export class StartComponent implements OnInit {
   user:any =null;
   quiz:any =null;
 
+ 
+    status:any;
+    // categoryId:any;
+    // quizId:any;
+    // examId:any;
+    // studentId:any;
+    // correct:any;
+    // incorrect:any;
+    // marksObtained:any;
+    grade:any;
+    remark:any;
+
+
+    currentDate = new Date();
+    
+    
+
+
+
   constructor(
     private locationSt: LocationStrategy,
     private _route: ActivatedRoute,
     private _question: QuestionService,
     private login:LoginService,
     private _quiz: QuizService,
+    private _result: ResultService,
+    // private datePipe: DatePipe
   ) {}
+
+  
 
   ngOnInit(): void {
     this.preventBackButton();
@@ -105,6 +133,10 @@ export class StartComponent implements OnInit {
     return `${mm} min : ${ss} sec`;
   }
 
+  
+
+  
+
   evalQuiz() {
     // //calculation
     // this.isSubmit = true;
@@ -137,12 +169,60 @@ export class StartComponent implements OnInit {
         this.attempted = data.attempted;
         this.correctAnswers = data.correctAnswers;
         this.isSubmit = true;
+        this.catId = data.catId;
+        if((this.marksGot/(this.questions[0].quiz.maxMarks))*100>=40){
+          this.status = "Pass";
+        }else{
+          this.status = "Fail";
+        }
+        if((this.marksGot/(this.questions[0].quiz.maxMarks))*100>=80){
+          this.grade = "A";
+          this.remark = "Excellent";
+        }
+        else if((this.marksGot/(this.questions[0].quiz.maxMarks))*100>=65){
+          this.grade = "B";
+          this.remark = "Good";
+        }
+        else if((this.marksGot/(this.questions[0].quiz.maxMarks))*100>=40){
+          this.grade = "C";
+          this.remark = "Average";
+        }
+        else{
+          this.grade = "D";
+          this.remark = "Below Average";
+        }
+        this.saveResult();
       },
       (error) =>{
         console.log(error);
       }
     )
   }
+
+saveResult(){
+  this.result = new Result();
+      this.result.status = this.status;
+      this.result.quizId = this.qid;
+      this.result.categoryId = this.catId;
+      this.result.examId = this.user.id;
+      this.result.studentId = this.user.id;
+      this.result.attempted = this.attempted;
+      this.result.correct = this.correctAnswers
+      this.result.incorrect = this.attempted- this.correctAnswers;
+      this.result.marksObtained = this.marksGot;
+      this.result.grade = this.grade
+      this.result.remark = this.remark
+  this._result.saveResult(this.result).subscribe(
+    (data:any) =>{
+      console.log(data);
+      this.result = new Result();
+
+    },
+    (error:any)=>{
+      console.log(error);
+    }
+  )
+}
 
 printPage(){
   window.print();

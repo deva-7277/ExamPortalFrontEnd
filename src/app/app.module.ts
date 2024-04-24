@@ -46,6 +46,13 @@ import { StartComponent } from './pages/user/start/start.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ReactiveFormsModule  } from '@angular/forms';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ResultListComponent } from './pages/result-list/result-list.component';
+import { ResultComponent } from './pages/result/result.component';
+import { TopResultComponent } from './pages/user/top-result/top-result.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { TeamComponent } from './pages/team/team.component';
+import { UserResultComponent } from './pages/user/user-result/user-result.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
 
 
 @NgModule({
@@ -74,6 +81,13 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     InstructionsComponent,
     UpdateQuestionComponent,
     StartComponent,
+    ResultListComponent,
+    ResultComponent,
+    TopResultComponent,
+    UserProfileComponent,
+    TeamComponent,
+    UserResultComponent,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,

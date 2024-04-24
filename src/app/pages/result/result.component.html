@@ -1,0 +1,61 @@
+<mat-card *ngIf="user">
+
+    <h1 class="t"><b>Quiz Result</b></h1>
+    
+    
+      <table border="3px solid" style="margin-left: 20px;margin-right: 20px;margin-top: 20px; margin-bottom: 20px;">
+        <tr style="height: 50px;">
+          <td colspan="6"><b>Date:</b> {{ singleResult.examDate}}</td>
+        </tr>
+        <tr style="height: 50px;">
+          <td colspan="2"><b>Exam id :</b>  Exam{{singleResult.studentId}} </td>
+          <td colspan="6" *ngIf="singleResult.status == 'Pass' ; else elseBlock" style="color: green;"><b style="color: black;">Status :</b><b>Pass</b></td>
+          <ng-template #elseBlock>
+            <b style="margin-top: 8px;">Status :</b> <b style="color: red; margin-top: 8px;">Fail</b>
+          </ng-template>
+        </tr>
+        <tr style="height: 50px;" >
+          <td colspan="2"><b>Category :</b> {{ singleResult.category }}</td>
+          <td colspan="6"><b>Quiz :</b>  {{ singleResult.quiz }}</td>
+        </tr>
+        
+        <tr style="height: 50px;">
+          <td colspan="6"><b>Student Name :</b> {{singleResult.studentName}}</td>
+        </tr>
+        <tr style="height: 50px;">
+          <td colspan="2"><b>Email id :</b> {{singleResult.email}}</td>
+          <td colspan="6"><b>Phone :</b>  {{singleResult.phone}}</td>
+        </tr>
+        <tr style="background-color: azure; height: 50px; text-align: center;">
+          <th>Total Questions</th>
+          <th>Total marks</th>
+          <th>Attempted</th>
+          <th>Correct</th>
+          <th>Incorrect</th>
+          <th>Marks Obtained</th>
+          
+        </tr>
+        <tr style="height: 50px; text-align: center;">
+          <td>{{ singleResult.totalQuestions }}</td>
+          <td>{{ singleResult.maxMarks }}</td>
+          <td>{{ singleResult.attempted}}</td>
+          <td>{{ singleResult.correct }}</td>
+          <td>{{ singleResult.incorrect }}</td>
+          <td>{{ singleResult.marksObtained }}</td>
+        </tr>
+        <tr style="height: 50px;">
+          <td colspan="2"><b>Grade:</b> {{singleResult.grade}}</td>
+          <td colspan="6"><b>Remark:</b> {{singleResult.remark}}</td>
+        </tr>
+        
+        
+      </table>
+
+   
+    <mat-card-actions class="text-center" >
+      <button
+      (click)="printPage()"
+       mat-raised-button style="margin-left: 40%;" color="primary">Print
+    </button>
+    </mat-card-actions>
+  </mat-card>

@@ -11,8 +11,43 @@
 }
 
 button:hover, mat-icon:hover{
-    color: #ff4081;
+    color: black;
     background-color: #ff4080ec;
     text-transform: capitalize;
     font-weight: 600;
+    margin-left: 5px;
+}
+
+button{
+    background-color: white;
+    width: 110%;
+}
+
+.design{
+    float: right;
+    margin-left: 20px;
+}
+
+html,body{
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+}
+
+button {
+    margin-top: 10px;
+    background-color:white;
+    border: none;
+    font-weight: 500;
+    color: black;
+    padding: 8px 12px;
+    /* text-align: center; */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+   
 }

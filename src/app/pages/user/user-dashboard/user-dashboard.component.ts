@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router  } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit {
+  showUserResult: boolean;
 
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
+    
   }
 
+  isUserDashboardRoute(): boolean {
+    return this.router.url.length <= 15;
+  }
 }

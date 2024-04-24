@@ -1,0 +1,10 @@
+.result{
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: medium
+}
+
+button{
+    border-radius: 12px;
+}

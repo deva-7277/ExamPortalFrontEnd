@@ -1,14 +1,15 @@
 <div class="bootstrap-wrapper">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-2">
-          <app-sidebar-user></app-sidebar-user>
-        </div>
-  
-        <div class="col-md-10">
-          <router-outlet></router-outlet>
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <app-sidebar-user></app-sidebar-user>
+      </div>
+      <div class="col-md-10">
+        <router-outlet></router-outlet>
+        <ng-container *ngIf="isUserDashboardRoute()">
+          <app-user-result></app-user-result>
+        </ng-container>
       </div>
     </div>
   </div>
-  
+</div>

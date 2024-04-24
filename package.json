@@ -23,6 +23,8 @@
     "@angular/router": "^15.2.0",
     "@ckeditor/ckeditor5-angular": "^6.0.1",
     "@ckeditor/ckeditor5-build-classic": "^37.1.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "bootstrap-grid-only-css": "^4.1.3",
     "ngx-ui-loader": "^13.0.0",
     "rxjs": "~7.8.0",
@@ -32,7 +34,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.6",
-    "@angular/cli": "~15.2.6",
+    "@angular/cli": "^15.0.0",
     "@angular/compiler-cli": "^15.2.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.5.0",

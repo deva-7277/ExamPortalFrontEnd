@@ -1,0 +1,21 @@
+<table style="border: 1px solid; width: 100%;" class="mt10 mr20 ml20" *ngFor="let r of results">
+    <div class = "result">
+       <b>Student Name:</b>  {{ r.studentName }} <br>
+       <b>Subject:</b> {{ r.quiz }} 
+       <b>Date:</b> {{r.examDate}} <br>
+       <b>Marks obtained: </b>{{ r.marksObtained}} / {{ r.maxMarks }} <br>
+    </div> 
+
+    <table class="mb10 ml20" style="margin-left: 35px;">
+        <button
+        [routerLink]="'/result/' + r.id"
+          style="background-color: rgb(33, 204, 33); font-weight: bold;"
+        >
+          View Result
+        </button>
+        <button 
+          style="background-color: rgb(33, 184, 204); font-weight: bold;"
+          class="ml20"
+        >Email Result</button>
+    
+    </table>

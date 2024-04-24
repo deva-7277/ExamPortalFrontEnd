@@ -1,4 +1,4 @@
-<mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
+<mat-card class="mt10 mr20 ml20" style="width:100%; height:100%" *ngFor="let q of quizzes">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title *ngIf="q.active==true; else elseBlock" style="color:rgb(23, 231, 23)">
@@ -32,7 +32,12 @@
       >
         Update
       </button>
-      <button mat-flat-button color="accent" class="ml20">Attempts</button>
+      <button mat-flat-button color="accent" class="ml20"
+        [routerLink]="'/admin/result-list/' + q.qId"
+        mat-flat-button
+        color = "accent"
+        class = ml20
+      >Attempts</button>
   
       <button
         mat-flat-button

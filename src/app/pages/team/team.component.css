@@ -1,0 +1,75 @@
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .member, .member2 {
+    padding: 0 25%;
+    display: flex;
+    align-items: center;
+    margin: 0 25%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+  
+  .member:nth-child(1) {
+    /* background-color: #ffd700; Member 1 - Gold */
+    justify-content: center;
+  }
+  
+  .member2 {
+    /* background-color: #ff69b4; Member 2 - Hot Pink */
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+  
+  .member:nth-child(3) {
+    /* background-color: #00bfff; Member 3 - Deep Sky Blue */
+    justify-content: center;
+  }
+  
+  .member img, .member2 img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .member .description , .member2 .description{
+    font-family: Arial, sans-serif;
+  }
+  
+  .member2 .description {
+    text-align: center;
+    margin-right: 0;
+    margin-left: 10px;
+  }
+  
+  .member:nth-child(2) img {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 767px) {
+    .member {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .member2{
+      flex-direction: column;
+      align-items: center;
+    }
+    }
+  
+    .member img {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .member .description {
+      text-align: center;
+    }
+  

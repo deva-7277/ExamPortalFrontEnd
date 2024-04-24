@@ -1,3 +1,87 @@
-.full-width{
+/* signup.component.css */
+
+.form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="file"] {
+    background-color: transparent;
     width: 100%;
-}
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* signup.component.css */
+
+/* signup.component.css */
+
+/* signup.component.css */
+
+.image-preview {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .image-preview img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: move;
+  }
+  
+  .image-preview::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    pointer-events: none;
+    padding: 10px;
+  }
+  
+  .image-preview.is-dragging::before {
+    border-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  
+  
+  
+  
+  @media (min-width: 300px) {
+    form {
+     width: 100%;
+      max-width: 500px;
+      margin: 5% auto;
+      padding: 0 20px;
+    }
+  }
+  

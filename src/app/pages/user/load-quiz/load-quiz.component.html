@@ -2,8 +2,8 @@
     <div class="container-fluid">
       <h1 class="mt20">Available Quizzes</h1>
       <div class="row mt20" *ngIf="quizzes">
-        <div class="col-md-4" *ngFor="let q of quizzes">
-          <mat-card class="mb20">
+        <div class="col-md-12" *ngFor="let q of quizzes">
+          <mat-card class="quizCard mt10 mr20 ml20" style="width:100%;">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>
@@ -17,7 +17,12 @@
               <p class="truncate">{{ q.description }}</p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button color="primary">View</button>
+            <button mat-flat-button color="accent" class="ml20"
+              [routerLink]="'/user-dashboard/result-list/' + q.qId"
+              mat-flat-button
+              color = "accent"
+              class = ml20
+            >Attempts</button>
               <button
                 mat-button
                 color="accent"

@@ -21,6 +21,11 @@ import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component'
 import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 import { StartComponent } from './pages/user/start/start.component';
+import { ResultListComponent } from './pages/result-list/result-list.component';
+import { ResultComponent } from './pages/result/result.component';
+import { TopResultComponent } from './pages/user/top-result/top-result.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { TeamComponent } from './pages/team/team.component';
 
 const routes: Routes = [
   {
@@ -93,6 +98,14 @@ const routes: Routes = [
         path: 'question/:quesId',
         component: UpdateQuestionComponent,
       },
+      {
+        path: 'result-list/:qId',
+        component: ResultListComponent,
+      },
+      {
+        path: 'result/:rId',
+        component: ResultComponent,
+      },
     ],
   },
   {
@@ -105,8 +118,20 @@ const routes: Routes = [
         component: LoadQuizComponent,
       },
       {
+        path: 'profile',
+        component: UserProfileComponent,
+      },
+      {
         path: 'instructions/:qid',
         component: InstructionsComponent,
+      },
+      {
+        path: 'result-list/:qId',
+        component: ResultListComponent,
+      },
+      {
+        path: 'result/:rId',
+        component: ResultComponent,
       },
     ]
   },
@@ -114,6 +139,22 @@ const routes: Routes = [
     path: 'start/:qid',
     component: StartComponent,
     canActivate: [NormalGuard],
+  },
+  {
+    path: 'result/:rId',
+    component: ResultComponent,
+  },
+  {
+    path: 'top',
+    component: TopResultComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'team',
+    component: TeamComponent
   },
 ];
 

@@ -1,130 +1,62 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DomSanitizer } from '@angular/platform-browser';
-import { FileHandle } from 'src/_model/file-handle.model';
-import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2'
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit{
-    constructor(
-      private userService:UserService,
-      private snack:MatSnackBar,
-      private sanitizer: DomSanitizer,
-    ) {}
+export class SignupComponent {
+  selectedImage: File | null = null;
+  imageUrl: string;
 
-    public user = {
-      username: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      profile: '',
-      userImages: [] as FileHandle[]
+  constructor(private http: HttpClient) {}
+
+  onSubmit(signupForm: any) {
+    if (signupForm.invalid) {
+      return;
+    }
+
+    let user = signupForm.value;
+
+    const formData = new FormData();
+    formData.append('username', user.username);
+    formData.append('password', user.password);
+    formData.append('firstName', user.firstName);
+    formData.append('lastName', user.lastName);
+    formData.append('email', user.email);
+    formData.append('phone', user.phone);
+
+    if (this.selectedImage) {
+      formData.append('imageFile', this.selectedImage, this.selectedImage.name);
+    }
+
+    this.http.post('http://localhost:8080/user/', formData).subscribe(
+      response => {
+        console.log('User registration successful:', response);
+        user = null
+        // Perform any additional actions after successful registration
+      },
+      error => {
+        console.error('Error occurred during user registration:', error);
+        // Handle the error appropriately
+      }
+    );
+  }
+
+  onFileSelected(event: any) {
+    this.selectedImage = event.target.files[0];
+
+    // Create a URL for displaying the image preview
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageUrl = e.target.result;
     };
+    reader.readAsDataURL(this.selectedImage);
+  }
 
-    ngOnInit(): void {}
-
-    formSubmit(){
-      //alert('submit');
-      console.log(this.user);
-      if(this.user.username =='' || this.user.username == null){
-        //alert('User is required !!');
-        this.snack.open('Username is required !!', 'ok', {
-          duration:3000,
-        })
-        return;
-      }
-
-      if(this.user.password =='' || this.user.password == null){
-        this.snack.open('Password is required !!', 'ok', {
-          duration:3000,
-        })
-        return;
-      }
-
-      if(this.user.firstName =='' || this.user.firstName == null){
-        this.snack.open('Firstname is required !!', 'ok', {
-          duration:3000,
-        })
-        return;
-      }
-
-      if(this.user.lastName =='' || this.user.lastName == null){
-        this.snack.open('Lastname is required !!', 'ok', {
-          duration:3000,
-        })
-        return;
-      }
-
-      if(this.user.email =='' || this.user.email == null){
-        this.snack.open('Email address is required !!', 'ok', {
-          duration:3000,
-        })
-        return;
-      }
-
-      if(this.user.phone =='' || this.user.username == null){
-        this.snack.open('Phone number is required !!', 'ok', {
-          duration:3000,
-        })
-        return;
-      }
-
-      //addUser : userService
-      const userFormData = this.prepareFromData(this.user);
-      this.userService.addUser(userFormData).subscribe(
-        (data:any)=>{
-          //function for success
-          console.log(data);
-          //alert('success');
-          Swal.fire('Successfully Registered', 'User id is ' + data.id, 'success');
-        },
-        (error)=>{
-            //error
-            console.log(error);
-            //alert('something went wrong');
-            this.snack.open(error.error.text, 'ok', {
-              duration:3000,
-            })
-        }
-      )
-    }
-
-    prepareFromData(user: any): FormData{
-      const formData = new FormData();
-      formData.append(
-        'user',
-        new Blob([JSON.stringify(user)],{type:'application/json'})
-      );
-      for(var i=0; i<user.userImages.length; i++){
-        formData.append(
-          'imageFile',
-          user.userImages[i].file,
-          user.userImages[i].file.name
-        );
-      }
-      return formData;
-    }
-
-    onFileSelected(event:any){
-      console.log(event);
-      if(event.target.files){
-        const file = event.target.files([] as any);
-        
-        const fileHandle : FileHandle = {
-          file : file,
-          url: this.sanitizer.bypassSecurityTrustUrl(
-            window.URL.createObjectURL(file)
-          )
-        }
-
-        this.user.userImages.push(fileHandle);
-      }
-    }
+  clearImage() {
+    this.selectedImage = null;
+    this.imageUrl = null;
+  }
 }

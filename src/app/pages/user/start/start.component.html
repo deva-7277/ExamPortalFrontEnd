@@ -111,8 +111,11 @@
 
         <h1 class="t"><b>Quiz Result</b></h1>
         
-
+        
           <table border="3px solid" style="margin-left: 20px;margin-right: 20px;margin-top: 20px; margin-bottom: 20px;">
+            <tr style="height: 50px;">
+              <td colspan="6"><b>Date:</b> {{currentDate | date:'dd-MM-yyyy'}}</td>
+            </tr>
             <tr style="height: 50px;">
               <td colspan="2"><b>Exam id :</b>  Exam{{user.id}} </td>
               <td colspan="6" *ngIf="(marksGot/(questions[0].quiz.maxMarks))*100>40 ; else elseBlock" style="color: green;"><b style="color: black;">Status :</b>  <b>Pass</b></td>
@@ -150,32 +153,24 @@
               <td>{{ marksGot }}</td>
             </tr>
             <tr style="height: 50px;">
-              <td colspan="2"><b>Grade:</b> A+</td>
-              <td colspan="6"><b>Remark:</b> Excellent</td>
+              <td colspan="2"><b>Grade:</b> {{grade}}</td>
+              <td colspan="6"><b>Remark:</b> {{remark}}</td>
             </tr>
+            
             
           </table>
 
-          <!-- <tr>
-            <th>Marks Got</th>
-          <td></td>
-          <th>Correct Answers</th>
-          <td>{{ correctAnswers }}</td>
-
-          </tr>
-          
-          
-          <h1>Questions Attempted :{{ attempted }}</h1> -->
        
         <mat-card-actions class="text-center" >
           <button (click)="printPage()"
            mat-raised-button style="margin-left: 40%;" color="primary">Print</button>
           <button
+            (click)="saveResult()"
             mat-raised-button
             color="accent"
             style="margin-left: 10px;"[routerLink]="'/user-dashboard/0'"
           >
-            Home
+            Save Result
           </button>
         </mat-card-actions>
       </mat-card>

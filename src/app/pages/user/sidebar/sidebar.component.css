@@ -3,3 +3,9 @@
     vertical-align: middle;
     margin-bottom: 5px;
 }
+.mat-list-item .mat-line {
+    white-space: normal;
+    overflow: initial;
+    text-overflow: unset;
+  }
+  

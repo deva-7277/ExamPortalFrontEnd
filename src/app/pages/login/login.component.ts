@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
         this.login.loginUser(data.token);
 
         this.login.getCurrentUser().subscribe((user: any) => {
+          user.image = null
           this.login.setUser(user);
           console.log(user);
           //redirect ...ADMIN: admin-dashboard
