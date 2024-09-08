@@ -53,6 +53,7 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
 import { TeamComponent } from './pages/team/team.component';
 import { UserResultComponent } from './pages/user/user-result/user-result.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { TopQuizResultService } from './services/topQuizResult.service';
 
 
 @NgModule({

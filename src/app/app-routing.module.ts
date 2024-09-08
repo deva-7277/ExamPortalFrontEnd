@@ -26,12 +26,17 @@ import { ResultComponent } from './pages/result/result.component';
 import { TopResultComponent } from './pages/user/top-result/top-result.component';
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 import { TeamComponent } from './pages/team/team.component';
+import { TopQuizResultService } from './services/topQuizResult.service';
 
 const routes: Routes = [
   {
     path:'',
     component:HomeComponent,
     pathMatch:'full'
+  },
+  {
+    path: 'admin',
+    component: HomeComponent
   },
   {
     path: 'signup',
@@ -155,7 +160,7 @@ const routes: Routes = [
   {
     path: 'team',
     component: TeamComponent
-  },
+  }
 ];
 
 @NgModule({

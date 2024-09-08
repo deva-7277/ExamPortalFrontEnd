@@ -1,1 +1,63 @@
-
+<div class="container">
+    <h1>Top Quiz Results</h1>
+  
+    <!-- Dropdown for quiz name -->
+    <div class="form-group">
+      <label for="quizName">Select Quiz:</label>
+      <select 
+        id="quizName" 
+        [(ngModel)]="selectedQuizId" 
+        (change)="onQuizChange($event)" 
+        class="form-control"
+      >
+        <option *ngFor="let quiz of quizzes" [value]="quiz.id">{{ quiz.name }}</option>
+      </select>
+    </div>
+  
+    <!-- Input box for limit -->
+    <div class="form-group">
+      <label for="limit">Limit:</label>
+      <input 
+        id="limit" 
+        type="number" 
+        [(ngModel)]="limit" 
+        (input)="onLimitChange($event)" 
+        class="form-control"
+        min="1"
+      />
+    </div>
+  
+    <!-- Congratulations heading -->
+    <div class="congratulations">
+      <h2>Congratulations to Our Stars for <b style="color: blue;">{{ selectedQuizName }}</b>!</h2>
+    </div>
+  
+    <!-- Display results in a table -->
+    <div class="results">
+      <h2>Results</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Student Name</th>
+            <th>Marks Obtained</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of topresults">
+            <td class="rank-cell">
+              <ng-container [ngSwitch]="result.rank">
+                <span *ngSwitchCase="1" class="medal gold">1 🥇</span>
+                <span *ngSwitchCase="2" class="medal silver">2 🥈</span>
+                <span *ngSwitchCase="3" class="medal bronze">3 🥉</span>
+                <span *ngSwitchDefault class="medal">{{ result.rank }}</span>
+              </ng-container>
+            </td>
+            <td>{{ result.studentName }}</td>
+            <td>{{ result.marksObtained +" / "+ result.maxMarks }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

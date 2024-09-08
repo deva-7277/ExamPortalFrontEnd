@@ -1,0 +1,33 @@
+/* src/app/components/home/home.component.css */
+
+.results-container {
+    margin: 20px;
+    padding-left: 20px; /* Ensure there's space from the sidebar */
+  }
+  
+  .text-center {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .result-card {
+    margin-bottom: 20px;
+    width: calc(100% - 40px); /* Adjust based on sidebar width if needed */
+  }
+  
+  .medal {
+    font-size: 1.5em;
+  }
+  
+  .gold {
+    color: gold;
+  }
+  
+  .silver {
+    color: silver;
+  }
+  
+  .bronze {
+    color: #cd7f32;
+  }
+  

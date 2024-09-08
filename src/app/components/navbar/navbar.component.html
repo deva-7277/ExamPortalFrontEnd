@@ -1,6 +1,7 @@
 <mat-toolbar color="accent">
   <a
-  routerLink="/user-dashboard"
+  *ngIf = "!isLoggedIn"
+  routerLink="/"
    mat-icon-button 
    class="example-icon" 
    aria-label="Example icon-button with menu icon"
